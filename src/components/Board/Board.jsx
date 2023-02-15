@@ -1,18 +1,22 @@
 import { Flex } from "@chakra-ui/react";
 import { DndContext, rectIntersection } from "@dnd-kit/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Lane from "../Lane/Lane";
 import AddCard from "../AddCard/AddCard";
 
-function Board() {
-  const [todoItems, setTodoItems] = useState([]);
-  const [doneItems, setDoneItems] = useState([]);
-  const [inProgressItems, setInProgressItems] = useState([]);
-  const [uItems, setuItems] = useState([]);
+function Board({initState, update}) {
+  const [todoItems, setTodoItems] = useState(initState.todoItems ?? []);
+  const [doneItems, setDoneItems] = useState(initState.doneItems ?? []);
+  const [inProgressItems, setInProgressItems] = useState(initState.inProgressItems ?? []);
+  const [uItems, setuItems] = useState(initState.uItems ?? []);
 
   const addNewCard = (title) => {
     setuItems([...uItems, { title }]);
   };
+
+  useEffect(() => {
+    update({todoItems, doneItems, inProgressItems, uItems});
+  }, [update, todoItems, doneItems, inProgressItems, uItems]);
 
   const dragHandler = (e) => {
     const container = e.over.id;
