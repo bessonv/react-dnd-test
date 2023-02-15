@@ -12,7 +12,8 @@ function Card({title, index, parent}) {
     },
   });
   const style = {
-    transform: CSS.Translate.toString(transform)
+    transform: CSS.Translate.toString(transform),
+    cursor: 'grab'
   };
   return (
     <Flex
@@ -22,6 +23,7 @@ function Card({title, index, parent}) {
       borderRadius='8'
       border='2px solid gray.500'
       boxShadow='0px 0px 5px 2px #2121213b'
+      cursor={transform ? style.cursor : undefined}
       transform={style.transform}
       {...listeners}
       {...attributes}

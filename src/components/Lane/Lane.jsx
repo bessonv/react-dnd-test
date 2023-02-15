@@ -3,7 +3,7 @@ import { useDroppable } from "@dnd-kit/core";
 import Card from "../Card/Card";
 
 function Lane({title, items}) {
-  const { setNodeRef } = useDroppable({
+  const { isOver, setNodeRef } = useDroppable({
     id: title
   });
   return (
@@ -11,7 +11,7 @@ function Lane({title, items}) {
       <Text fontWeight='bold'>{title}</Text>
       <Flex
         ref={setNodeRef}
-        backgroundColor='gray.200'
+        backgroundColor={isOver ? 'green.400' : 'gray.200'}
         borderRadius='8'
         flex='1'
         padding='2'

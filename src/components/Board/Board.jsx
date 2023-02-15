@@ -20,6 +20,8 @@ function Board() {
     const index = e.active.data.current.index ?? 0;
     const parent = e.active.data.current.parent ?? "ToDo";
 
+    if (container === parent) return;
+
     if (container === "ToDo") {
       setTodoItems([...todoItems, { title }]);
     } else if (container === "Done") {
